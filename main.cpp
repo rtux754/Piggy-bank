@@ -37,7 +37,7 @@ void checkBalance(); // sudah ku buat
 void deleteTransactionById(int targetId); // sudah ku buat
 void updateTransactionById(int targetId); // sudah ku buat // digunakan untuk mengedit salah nomial atau mengubah nominal transaksi yang sudah lewat
 void exportToReceipt(int targetId); // belum ku buat
-void filterdByCategory(string catName); // belum ku buat
+void filterByCategory(string catName); // belum ku buat
 void clearAllHistory(); // belum ku buat
 
 // SISTEM FILE
@@ -87,7 +87,7 @@ int main() {
             cout << "                                                          Masukkan angka yang valid!\n";
             continue;
         }
-        
+
         switch (choice) {
         case 1:
             clearScreen();
@@ -130,7 +130,7 @@ void organizer() {
             cout << "                                                         Masukkan input angka!\n";
             continue;
         }
-            
+
         switch (choice) {
         case 1:
             clearScreen();
@@ -178,7 +178,7 @@ void customer() {
              cout << "                                                    Masukkan input angka!\n";
              continue;
          }
-         
+
         switch (choice) {
         case 1:
             clearScreen();
@@ -214,7 +214,7 @@ void customer() {
             cin.ignore();
             getline(cin, catName);
             clearScreen();
-            filterdByCategory(catName);
+            filterByCategory(catName);
             break;
         }
         case 7:
@@ -247,7 +247,7 @@ void addIncome() {
     getline(cin, newTx.category);
     cout << "                                                     Catatan / Deskripsi Singkat  : ";
     getline(cin, newTx.note);
-    
+
     transactions.push_back(newTx);
     cout << "\n                                                     [SUKSES] Pemasukan berhasil dicatat!\n";
     cout << "                                                     ============================================\n";
@@ -285,11 +285,11 @@ void viewAllTransactions() {
     cout << "========================================================================================================\n";
     cout << "                                           DAFTAR SEMUA TRANSAKSI                                       \n";
     cout << "========================================================================================================\n";
-    cout << " " << setw(5) << left << "ID" 
-         << " | " << setw(12) << left << "Tanggal" 
-         << " | " << setw(13) << left << "Tipe" 
-         << " | " << setw(18) << left << "Nominal (Rp)" 
-         << " | " << setw(15) << left << "Kategori" 
+    cout << " " << setw(5) << left << "ID"
+         << " | " << setw(12) << left << "Tanggal"
+         << " | " << setw(13) << left << "Tipe"
+         << " | " << setw(18) << left << "Nominal (Rp)"
+         << " | " << setw(15) << left << "Kategori"
          << " | " << left << "Catatan" << endl;
     cout << "--------------------------------------------------------------------------------------------------------\n";
 
@@ -297,11 +297,11 @@ void viewAllTransactions() {
         cout << "                                    --- Belum ada data transaksi ---                                    \n";
     } else {
         for (const Transaction& tx : transactions) {
-            cout << " " << setw(5) << left << tx.id 
-                 << " | " << setw(12) << left << tx.date 
-                 << " | " << setw(13) << left << tx.type 
-                 << " | " << setw(18) << left << fixed << setprecision(0) << tx.amount 
-                 << " | " << setw(15) << left << tx.category 
+            cout << " " << setw(5) << left << tx.id
+                 << " | " << setw(12) << left << tx.date
+                 << " | " << setw(13) << left << tx.type
+                 << " | " << setw(18) << left << fixed << setprecision(0) << tx.amount
+                 << " | " << setw(15) << left << tx.category
                  << " | " << left << tx.note << endl;
         }
     }
@@ -320,7 +320,7 @@ void checkBalance() {
         }
     }
     double currentBalance = totalIncome - totalExpense;
-    
+
     cout << "                                                     ============================================\n";
     cout << "                                                                 RINGKASAN REKENING ANDA         \n";
     cout << "                                                     ============================================\n";
@@ -346,7 +346,7 @@ void updateTransactionById(int targetId) {
         cout << "                                                      Kategori : " << it->category << endl;
         cout << "                                                      Catatan  : " << it->note << endl;
         cout << "                                                     --------------------------------------------\n";
-        
+
         cout << "                                                      Masukkan Data Pembaruan:\n";
         cin.ignore();
         cout << "                                                      Tanggal Baru (DD-MM-YYYY): ";
@@ -358,7 +358,7 @@ void updateTransactionById(int targetId) {
         getline(cin, it->category);
         cout << "                                                      Catatan Baru             : ";
         getline(cin, it->note);
-        
+
         cout << "                                                     ============================================\n";
         cout << "                                                     [SUKSES] Data Transaksi Berhasil Di-update! \n";
         cout << "                                                     ============================================\n";
@@ -386,7 +386,7 @@ void exportToReceipt(int targetId) {
     auto it = find_if(transactions.begin(), transactions.end(), [targetId](const Transaction& item) {
         return item.id == targetId;
     });
-    
+
     if (it != transactions.end()) {
         cout << "                                                     ============================================\n";
         cout << "                                                                   OFFICIAL RECEIPT              \n";
@@ -409,19 +409,19 @@ void filterByCategory(string catName) {
     cout << "========================================================================================================\n";
     cout << "                                      HASIL FILTER KATEGORI: " << catName << "                           \n";
     cout << "========================================================================================================\n";
-    cout << " " << setw(5) << left << "ID" 
-         << " | " << setw(12) << left << "Tanggal" 
-         << " | " << setw(13) << left << "Tipe" 
-         << " | " << setw(18) << left << "Nominal (Rp)" 
+    cout << " " << setw(5) << left << "ID"
+         << " | " << setw(12) << left << "Tanggal"
+         << " | " << setw(13) << left << "Tipe"
+         << " | " << setw(18) << left << "Nominal (Rp)"
          << " | " << left << "Catatan" << endl;
     cout << "--------------------------------------------------------------------------------------------------------\n";
 
     for (const auto& tx : transactions) {
         if (tx.category == catName) {
-            cout << " " << setw(5) << left << tx.id 
-                 << " | " << setw(12) << left << tx.date 
-                 << " | " << setw(13) << left << tx.type 
-                 << " | " << setw(18) << left << fixed << setprecision(0) << tx.amount 
+            cout << " " << setw(5) << left << tx.id
+                 << " | " << setw(12) << left << tx.date
+                 << " | " << setw(13) << left << tx.type
+                 << " | " << setw(18) << left << fixed << setprecision(0) << tx.amount
                  << " | " << left << tx.note << endl;
             ditemukan = true;
         }
@@ -460,7 +460,7 @@ void save() {
         cout << "                                                     [SYSTEM] Database sinkron. Data berhasil disimpan.\n";
     } else {
         cout << "                                                     [ERROR] Gagal menulis ke berkas backup!\n";
-    }    
+    }
 }
 
 void load() {
@@ -472,7 +472,7 @@ void load() {
     string line;
     while (getline(bookAccount, line)) {
         if (line.empty()) continue;
-        
+
         stringstream ss(line);
         Transaction tx;
         string tempId, tempAmount;
