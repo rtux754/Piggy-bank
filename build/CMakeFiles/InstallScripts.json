@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/rtux/Piggy-bank/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
