@@ -67,10 +67,10 @@ int main() {
 
     cout << "                                           ****************************************************" << endl;
     cout << "                                                                                               " << endl;
-    cout << "                                                      WELCOME TO PIGGY BANKS CLI               " << endl;
+    cout << "                                                     WELCOME TO FINANCE MANAGEMENT CLI         " << endl;
     cout << "                                                                                               " << endl;
     cout << "                                           ****************************************************" << endl;
-    cout << "                                                  Catat | Atur | Pantau | Amankan Keuanganmu       " << endl;
+    cout << "                                                Catat | Atur | Pantau | Amankan Keuanganmu     " << endl;
     cout << "                                           ****************************************************" << endl;
 
     while (true) {
@@ -100,9 +100,9 @@ int main() {
         case 3:
             clearScreen();
             save();
-            cout << "                                             ************************************************\n";
-            cout << "                                                Terima kasih telah menggunakan PIGGY BANKS!\n";
-            cout << "                                             ************************************************\n";
+            cout << "                                      **********************************************************\n";
+            cout << "                                        Terima kasih telah menggunakan FINANCE MANAGEMENT CLI!\n";
+            cout << "                                      **********************************************************\n";
             return 0;
         default:
             cout << "                                                          Pilihan Tidak Valid. Mohon Coba Kembali.\n";
@@ -446,7 +446,7 @@ void clearAllHistory() {
 }
 
 void save() {
-    ofstream bookAccount("akuntansi.csv");
+    ofstream bookAccount("database.csv");
     if (bookAccount.is_open()) {
         for (const Transaction& tx: transactions) {
             bookAccount << tx.id << ","
@@ -457,14 +457,14 @@ void save() {
                         << tx.note << "\n";
         }
         bookAccount.close();
-        cout << "                                                     [SYSTEM] Database sinkron. Data berhasil disimpan.\n";
+        cout << "                                          [SYSTEM] Database sinkron. Data berhasil disimpan.\n";
     } else {
-        cout << "                                                     [ERROR] Gagal menulis ke berkas backup!\n";
+        cout << "                                          [ERROR] Gagal menulis ke berkas backup!\n";
     }
 }
 
 void load() {
-    ifstream bookAccount("akuntansi.csv");
+    ifstream bookAccount("database.csv");
     if (!bookAccount.is_open()) {
         return;
     }
