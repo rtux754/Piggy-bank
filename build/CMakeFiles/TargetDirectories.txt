@@ -1,3 +1,0 @@
-/home/rtux/Piggy-bank/build/CMakeFiles/Finance_Management.dir
-/home/rtux/Piggy-bank/build/CMakeFiles/edit_cache.dir
-/home/rtux/Piggy-bank/build/CMakeFiles/rebuild_cache.dir
