@@ -6,6 +6,10 @@
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
+//  JIKA DI WINDOWS AKTIFKAN LIBRARY ANSI CODE
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 
@@ -21,28 +25,29 @@ struct Transaction {
 // DEKLARASI TIPE DATA VECTOR SECARA GLOBAL AGAR MEMPERMUDAH PEMBUATAN DAN HEMAT BARIS CODE
 vector<Transaction> transactions;
 
+
 // FUNGSI UI
 void clearScreen();
 void changeColor(string colorCode);
-void organizer(); // ini sudah ku buat
-void customer(); // ini sudah ku buat
+void organizer();
+void customer();
 
 // FUNGSI I/O
-void addIncome(); // sudah ku buat
-void addExpense(); // sudah ku buat
-void viewAllTransactions(); // sudah ku buat
-void checkBalance(); // sudah ku buat
+void addIncome();
+void addExpense();
+void viewAllTransactions();
+void checkBalance();
 
 // OPERASI SPESIFIK
-void deleteTransactionById(int targetId); // sudah ku buat
-void updateTransactionById(int targetId); // sudah ku buat // digunakan untuk mengedit salah nomial atau mengubah nominal transaksi yang sudah lewat
-void exportToReceipt(int targetId); // belum ku buat
-void filterByCategory(string catName); // belum ku buat
-void clearAllHistory(); // belum ku buat
+void deleteTransactionById(int targetId);
+void updateTransactionById(int targetId); // digunakan untuk mengedit salah nomial atau mengubah nominal transaksi yang sudah lewat
+void exportToReceipt(int targetId);
+void filterByCategory(string catName);
+void clearAllHistory();
 
 // SISTEM FILE
-void load(); // belum ku buat
-void save(); // belum ku buat
+void load();
+void save();
 
 // FUNGSI PEMBERSIH LAYAR AGAR BERSIH
 void clearScreen() {
